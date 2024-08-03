@@ -8,4 +8,6 @@ public interface VideoService {
 
     List<Video> getVideos();
 
+    Video createVideo(Video video);
+
 }

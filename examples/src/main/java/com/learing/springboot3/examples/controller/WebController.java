@@ -1,11 +1,14 @@
 package com.learing.springboot3.examples.controller;
 
+import com.learing.springboot3.examples.dto.Video;
 import com.learing.springboot3.examples.service.VideoService;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 
 @Controller
@@ -27,6 +30,14 @@ public class WebController {
         model.addAttribute("videos", videos);
         return "index";
     }
+
+    @PostMapping("/new-video")
+    public String createVideo(@ModelAttribute Video video){
+        logger.info("Received request to create video {}",video);
+        videoService.createVideo(video);
+        return "redirect:/";
+    }
+
 
 
 }
