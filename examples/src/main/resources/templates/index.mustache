@@ -4,6 +4,21 @@
 <p>
     Enjoy the ride
 </p>
+
+<form action="/multi-field-search" method="post">
+    <label for="name">Name:</label>
+    <input type="text" name="name">
+    <label for="description">Description:</label>
+    <input type="text" name="description">
+    <button type="submit">Search</button>
+</form>
+
+<form action="/universal-search" method="post">
+    <label for="search">Search:</label>
+    <input type="text" name="value">
+    <button type="submit">Search</button>
+</form>
+
 <ul>
     {{#videos}}
         <li>{{name}}</li>
