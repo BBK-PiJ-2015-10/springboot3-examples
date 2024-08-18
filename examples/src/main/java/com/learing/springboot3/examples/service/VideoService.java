@@ -17,4 +17,6 @@ public interface VideoService {
 
     List<VideoEntity> search(UniversalSearch search);
 
+    List<VideoEntity> findByName(String name);
+
 }
