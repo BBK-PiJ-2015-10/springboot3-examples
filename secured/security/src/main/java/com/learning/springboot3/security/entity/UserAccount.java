@@ -3,6 +3,7 @@ package com.learning.springboot3.security.entity;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +22,9 @@ public class UserAccount {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<GrantedAuthority> authorities =
             new ArrayList<>();
+
+    protected UserAccount() {
+    }
 
     public UserAccount(String username, String password, String... authorities) {
         this.username = username;
