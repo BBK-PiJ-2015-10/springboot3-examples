@@ -8,11 +8,15 @@ import com.learning.springboot3.security.security.mapper.UserMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
 @Configuration
@@ -55,6 +59,21 @@ public class SecurityConfig {
     UserDetailsService userDetailsServiceViaRepo(UserRepository userRepository, UserMapper userMapper) {
         return username ->
                 userMapper.fromUserAccount(userRepository.findByUsername(username));
+    }
+
+
+    // This is to define a Spring Security Policy
+    @Bean
+    SecurityFilterChain configureSecurity(HttpSecurity http) throws Exception {
+        return http.authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/", "/search").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/new-video", "/api/**").hasRole("ADMIN")
+                        .anyRequest().denyAll())
+                .httpBasic(Customizer.withDefaults())
+                .formLogin(Customizer.withDefaults())
+                .build();
     }
 
 }
