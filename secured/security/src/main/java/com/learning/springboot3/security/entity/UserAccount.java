@@ -2,8 +2,9 @@ package com.learning.springboot3.security.entity;
 
 import jakarta.persistence.Entity;
 
-@Entity
+//@Entity
 public class UserAccount {
 
-
+    public UserAccount() {
+    }
 }
