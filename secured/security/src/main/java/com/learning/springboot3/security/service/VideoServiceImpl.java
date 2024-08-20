@@ -2,7 +2,9 @@ package com.learning.springboot3.security.service;
 
 import com.learning.springboot3.security.dto.NewVideo;
 import com.learning.springboot3.security.dto.Search;
+import com.learning.springboot3.security.dto.Video;
 import com.learning.springboot3.security.entity.VideoEntity;
+import com.learning.springboot3.security.mapper.VideoMapper;
 import com.learning.springboot3.security.repo.VideoRepository;
 import jakarta.annotation.PostConstruct;
 import org.springframework.data.domain.Example;
@@ -11,20 +13,23 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class VideoServiceImpl implements VideoService {
 
     private VideoRepository videoRepository;
 
+    private VideoMapper videoMapper;
 
-    public VideoServiceImpl(VideoRepository videoRepository) {
+    public VideoServiceImpl(VideoRepository videoRepository, VideoMapper videoMapper) {
         this.videoRepository = videoRepository;
+        this.videoMapper = videoMapper;
     }
 
     @Override
-    public List<VideoEntity> getAllVideos() {
-        return videoRepository.findAll();
+    public List<Video> getAllVideos() {
+        return videoRepository.findAll().stream().map(videoMapper::toVideo).collect(Collectors.toList());
     }
 
     @Override
