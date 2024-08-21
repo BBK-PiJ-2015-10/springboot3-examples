@@ -11,9 +11,9 @@ public interface VideoService {
 
     List<Video> getAllVideos();
 
-    List<VideoEntity> search(Search search);
+    List<Video> search(Search search);
 
-    VideoEntity create(NewVideo newVideo);
+    Video create(NewVideo newVideo);
 
     void delete(Long videoId);
 

@@ -33,7 +33,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public List<VideoEntity> search(Search search) {
+    public List<Video> search(Search search) {
         // This is using probes, could have done by findByNameContainsOrDescriptionContainsAllIgnoreCase
         VideoEntity probe = new VideoEntity();
         if (StringUtils.hasText(search.value())) {
@@ -45,13 +45,13 @@ public class VideoServiceImpl implements VideoService {
                         .withIgnoreCase()
                         .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING)
         );
-        return videoRepository.findAll(example);
+        return videoRepository.findAll(example).stream().map(videoMapper::toVideo).toList();
     }
 
     @Override
-    public VideoEntity create(NewVideo newVideo) {
+    public Video create(NewVideo newVideo) {
         var videoEntity = new VideoEntity(newVideo.name(), newVideo.description());
-        return videoRepository.save(videoEntity);
+        return videoMapper.toVideo(videoRepository.save(videoEntity));
     }
 
     @Override
