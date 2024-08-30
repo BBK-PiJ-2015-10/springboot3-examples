@@ -11,14 +11,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
+//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+//import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
+//import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+//import org.springframework.security.provisioning.UserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
-@EnableWebSecurity
+//@EnableWebSecurity
 @Configuration
 public class SecurityConfig {
 
@@ -69,8 +69,10 @@ public class SecurityConfig {
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/", "/search").authenticated()
                         .requestMatchers(HttpMethod.GET, "/api/**").authenticated()
+                        .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/new-video", "/api/**").hasRole("ADMIN")
-                        .anyRequest().denyAll())
+                )
+                        //.anyRequest().denyAll())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults())
                 .build();

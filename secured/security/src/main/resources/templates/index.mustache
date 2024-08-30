@@ -1,14 +1,19 @@
-<!doctype html>
-<html lang="en">
+<html>
 <head>
-
 </head>
 <body>
-<h1>Greetings from Learning Springboot3 with Security</h1>
+<h1>Greetings Learning Spring Boot 3.0 fans!</h1>
+<p>
+    In this chapter, we are learning how to make
+    a web app using Spring Boot 3.0
+</p>
 <ul>
     {{#videos}}
         <li>
             {{name}}
+            <form action="/delete/videos/{{id}}" method="post">
+                <button type="submit">Delete</button>
+            </form>
         </li>
     {{/videos}}
 </ul>

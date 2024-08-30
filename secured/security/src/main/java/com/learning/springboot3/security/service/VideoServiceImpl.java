@@ -7,6 +7,8 @@ import com.learning.springboot3.security.entity.VideoEntity;
 import com.learning.springboot3.security.mapper.VideoMapper;
 import com.learning.springboot3.security.repo.VideoRepository;
 import jakarta.annotation.PostConstruct;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class VideoServiceImpl implements VideoService {
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private VideoRepository videoRepository;
 
@@ -56,6 +60,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public void delete(Long videoId) {
+        logger.info("Someone wants to delete video {}",videoId);
         videoRepository.deleteById(videoId);
     }
 
