@@ -9,12 +9,11 @@
         <module name="actors" />
         <module name="security" />
         <module name="examples" />
-        <module name="spring-cloud-stream-rabbit" />
         <module name="spring-cloud-stream-academy" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="spring-cloud-stream-academy" target="21" />
+      <module name="spring-cloud-stream-rabbit" target="21" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
