@@ -8,8 +8,8 @@
         <outputRelativeToContentRoot value="true" />
         <module name="actors" />
         <module name="security" />
+        <module name="spring-cloud-stream-aca-kafka" />
         <module name="examples" />
-        <module name="spring-cloud-stream-academy" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,7 +21,7 @@
       <module name="actors" options="-parameters" />
       <module name="examples" options="-parameters" />
       <module name="security" options="-parameters" />
-      <module name="spring-cloud-stream-academy" options="-parameters" />
+      <module name="spring-cloud-stream-aca-kafka" options="-parameters" />
       <module name="spring-cloud-stream-rabbit" options="-parameters" />
     </option>
   </component>
