@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/examples/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cloud-stream-academy/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cloud-stream-rabbit/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cloud-stream-aca-kafka/pom.xml" />
       </list>
     </option>
   </component>
