@@ -10,6 +10,7 @@
         <module name="security" />
         <module name="spring-cloud-stream-aca-kafka" />
         <module name="examples" />
+        <module name="spring-cloud-stream-aca-kafka-rabbit" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -22,6 +23,7 @@
       <module name="examples" options="-parameters" />
       <module name="security" options="-parameters" />
       <module name="spring-cloud-stream-aca-kafka" options="-parameters" />
+      <module name="spring-cloud-stream-aca-kafka-rabbit" options="-parameters" />
       <module name="spring-cloud-stream-rabbit" options="-parameters" />
     </option>
   </component>
