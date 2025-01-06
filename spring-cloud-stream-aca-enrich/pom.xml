@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>tr</groupId>
-	<artifactId>spring-cloud-stream-aca-processor</artifactId>
+	<artifactId>spring-cloud-stream-aca-enrich</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-cloud-stream-aca-processor</name>
-	<description>spring-cloud-stream-aca-processor</description>
+	<name>spring-cloud-stream-aca-enrich</name>
+	<description>spring-cloud-stream-aca-enrich</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -31,16 +31,18 @@
 		<spring-cloud.version>2024.0.0</spring-cloud.version>
 	</properties>
 	<dependencies>
-		<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		-->
+		<!--
+
+        -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-binder-kafka</artifactId>
@@ -50,11 +52,30 @@
 			<artifactId>spring-kafka</artifactId>
 		</dependency>
 
+		<!-- for rabbit -->
+		<!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-processor-binder-rabbit</artifactId>
+        </dependency>
+-->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!--
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-test-binder</artifactId>
@@ -65,6 +86,9 @@
 			<artifactId>spring-kafka-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

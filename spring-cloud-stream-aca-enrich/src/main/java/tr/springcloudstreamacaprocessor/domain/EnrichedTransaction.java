@@ -1,4 +1,4 @@
-package domain;
+package tr.springcloudstreamacaprocessor.domain;
 
 public record EnrichedTransaction(Long id, CashCard cashCard, ApprovalStatus approvalStatus,CardHolderData cardHolderData) {
 }

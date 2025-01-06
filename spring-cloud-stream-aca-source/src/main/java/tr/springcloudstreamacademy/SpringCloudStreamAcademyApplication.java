@@ -34,7 +34,7 @@ public class SpringCloudStreamAcademyApplication {
         3 - Run the application
 
         Sunday:  On Demand processing with StreamBridge
-        Monday: Enrich with data processor
+        Monday: Enrich with data enrich
 
      */
     /*

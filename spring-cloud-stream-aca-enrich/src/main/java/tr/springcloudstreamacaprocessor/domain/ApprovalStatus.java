@@ -1,4 +1,4 @@
-package domain;
+package tr.springcloudstreamacaprocessor.domain;
 
 public enum ApprovalStatus {
 
