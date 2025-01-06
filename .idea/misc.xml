@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/spring-cloud-stream-rabbit/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cloud-stream-aca-kafka/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cloud-stream-aca-kafka-rabbit/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cloud-stream-aca-source/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cloud-stream-aca-processor/pom.xml" />
       </list>
     </option>
   </component>

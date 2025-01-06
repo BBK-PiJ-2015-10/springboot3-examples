@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>tr</groupId>
-    <artifactId>spring-cloud-stream-aca-kafka-rabbit</artifactId>
+    <artifactId>spring-cloud-stream-aca-source</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cloud-stream-academy</name>
     <description>spring-cloud-stream-academy</description>
