@@ -25,5 +25,5 @@ public class CashCardController {
         logger.info("Controller received transaction: {}", transaction);
         cashCardTransactionOnDemand.publishOnDemand(transaction);
     }
-    
+
 }
