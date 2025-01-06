@@ -14,7 +14,7 @@ import java.util.function.Function;
 
 @Configuration
 public class CashCardTransactionProcessor {
-    
+
     // Consumes from enrichTransaction-in-0
     // Publishes to enrichTransaction-out-0
     @Bean
