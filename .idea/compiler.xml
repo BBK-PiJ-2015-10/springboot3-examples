@@ -7,11 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="actors" />
-        <module name="spring-cloud-stream-aca-enrich" />
         <module name="security" />
+        <module name="examples" />
+        <module name="spring-cloud-stream-aca-sink" />
+        <module name="spring-cloud-stream-aca-enrich" />
         <module name="spring-cloud-stream-aca-kafka" />
         <module name="spring-cloud-stream-aca-source" />
-        <module name="examples" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,6 +26,7 @@
       <module name="security" options="-parameters" />
       <module name="spring-cloud-stream-aca-enrich" options="-parameters" />
       <module name="spring-cloud-stream-aca-kafka" options="-parameters" />
+      <module name="spring-cloud-stream-aca-sink" options="-parameters" />
       <module name="spring-cloud-stream-aca-source" options="-parameters" />
       <module name="spring-cloud-stream-rabbit" options="-parameters" />
     </option>

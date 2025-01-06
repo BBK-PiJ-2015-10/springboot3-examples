@@ -21,7 +21,7 @@ import static org.mockito.BDDMockito.given;
 @SuppressWarnings("removal")
 @SpringBootTest
 @Import(TestChannelBinderConfiguration.class)
-class SpringCloudStreamAcademyApplicationTests {
+class SpringCloudStreamAcaSourceApplicationTests {
 
     @MockBean
     private DataSourceService dataSourceService;

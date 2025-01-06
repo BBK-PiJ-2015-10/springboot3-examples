@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringCloudStreamAcademyApplication {
+public class SpringCloudStreamAcaSourceApplication {
 
     /* For rabbit:
        1 - Uncomment rabbit dependencies
@@ -44,7 +44,7 @@ public class SpringCloudStreamAcademyApplication {
 
      */
     public static void main(String[] args) {
-        SpringApplication.run(SpringCloudStreamAcademyApplication.class, args);
+        SpringApplication.run(SpringCloudStreamAcaSourceApplication.class, args);
     }
 
 }
