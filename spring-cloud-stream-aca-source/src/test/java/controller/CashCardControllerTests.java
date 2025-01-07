@@ -2,7 +2,6 @@ package controller;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.io.IOException;
@@ -13,12 +12,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.cloud.stream.binder.test.TestChannelBinderConfiguration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import tr.springcloudstreamacademy.domain.CashCard;
 import tr.springcloudstreamacademy.domain.Transaction;
+import tr.springcloudstreamacademy.ondemand.CashCardTransactionOnDemand;
+
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@Import({TestChannelBinderConfiguration.class, CashCardTransactionOnDemand.class})
 public class CashCardControllerTests {
 
     @LocalServerPort
@@ -41,6 +45,8 @@ public class CashCardControllerTests {
     public static class App {
 
     }
+
+
 
 
 
