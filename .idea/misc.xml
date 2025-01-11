@@ -15,6 +15,7 @@
         <option value="$PROJECT_DIR$/spring-cloud-stream-aca-processor/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cloud-stream-aca-enrich/pom.xml" />
         <option value="$PROJECT_DIR$/spring-cloud-stream-aca-sink/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-cloud-rabbit-csv/pom.xml" />
       </list>
     </option>
   </component>
