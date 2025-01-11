@@ -19,7 +19,12 @@ public class BrokerPublisher {
 
     public void publishEligibilityRequest(EligibilityRequest eligibilityRequest) {
         logger.info("Publishing on demand: {}", eligibilityRequest);
-        streamBridge.send("approvalRequest-out-0",eligibilityRequest);
+        //streamBridge.send("approvalRequest-out-0",eligibilityRequest);
+    }
+
+    public void publishEligibilityRequestFucker(EligibilityRequest eligibilityRequest) {
+        logger.info("Publishing on demand to fucker: {}", eligibilityRequest);
+        streamBridge.send("amp.direct",eligibilityRequest);
     }
 
 
