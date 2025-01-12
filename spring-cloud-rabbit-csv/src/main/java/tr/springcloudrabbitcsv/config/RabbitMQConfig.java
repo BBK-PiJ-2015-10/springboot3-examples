@@ -1,6 +1,5 @@
 package tr.springcloudrabbitcsv.config;
 
-
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String QUEUE_NAME = "culon";
+    public static final String QUEUE_NAME = "test";
     public static final String EXCHANGE_NAME = "amq.direct";
 
     @Bean
@@ -23,7 +22,7 @@ public class RabbitMQConfig {
 
     @Bean
     public Binding binding(Queue queue, DirectExchange exchange) {
-        return BindingBuilder.bind(queue).to(exchange).with("culon");
+        return BindingBuilder.bind(queue).to(exchange).with("test");
     }
 
 }

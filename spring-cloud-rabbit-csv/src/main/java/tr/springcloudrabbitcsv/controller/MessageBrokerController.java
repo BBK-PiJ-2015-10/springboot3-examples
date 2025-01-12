@@ -2,10 +2,9 @@ package tr.springcloudrabbitcsv.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import tr.springcloudrabbitcsv.entity.EligibilityRequest;
 import tr.springcloudrabbitcsv.file.CsvFileReader;
 import tr.springcloudrabbitcsv.publisher.QueuePublisher;
 
@@ -18,19 +17,17 @@ public class MessageBrokerController {
 
     private final CsvFileReader csvFileReader;
 
-
     public MessageBrokerController(QueuePublisher queuePublisher, CsvFileReader csvFileReader) {
         this.queuePublisher = queuePublisher;
         this.csvFileReader = csvFileReader;
     }
 
-    @PostMapping(path = "/publish/queue")
-    public void publishMessage(@RequestBody EligibilityRequest eligibilityRequest) {
-        logger.info("Controller received eligibility request to published message {} to queue: {}", eligibilityRequest);
+    @PostMapping(path = "/publish/queue/{queueName}")
+    public void publishMessage(@PathVariable("queueName") String queueName) {
+        logger.info("Controller received eligibility request to published messages to queue: {}", queueName);
         var requests = csvFileReader.readCsvFile();
-        requests.forEach(queuePublisher::sendMessage);
+        requests.forEach(er -> queuePublisher.sendMessage(queueName, er));
         logger.info("Controller published eligibility request to queue");
     }
-
 
 }

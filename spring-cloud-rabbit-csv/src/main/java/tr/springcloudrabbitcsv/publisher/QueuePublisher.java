@@ -26,15 +26,19 @@ public class QueuePublisher {
         this.objectMapper = objectMapper;
     }
 
-    public void sendMessage(EligibilityRequest request) {
-        try {
-            var jsonMessage = objectMapper.writeValueAsString(request);
-            logger.info("Sending message: {}", jsonMessage);
-            rabbitTemplate.convertAndSend(EXCHANGE_NAME, QUEUE_NAME, jsonMessage);
-        } catch (JsonProcessingException e) {
-            logger.error("Error while converting object to json", e);
+    public void sendMessage(String queueName, EligibilityRequest eligibilityRequest) {
+        var validQueue = queueName.equals(QUEUE_NAME);
+        if (!validQueue) {
+            logger.error("Invalid queue name: {}", queueName);
+            return;
         }
-
+        try {
+            var jsonRequest = objectMapper.writeValueAsString(eligibilityRequest);
+            rabbitTemplate.convertAndSend(EXCHANGE_NAME, QUEUE_NAME, jsonRequest);
+            logger.info("Message {} sent to queue: {}", jsonRequest, queueName);
+        } catch (JsonProcessingException e) {
+            logger.error("Error converting object to json: {}", e.getMessage());
+        }
     }
 
 }
