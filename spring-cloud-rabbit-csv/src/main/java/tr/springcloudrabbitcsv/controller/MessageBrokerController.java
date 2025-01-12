@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import tr.springcloudrabbitcsv.entity.EligibilityRequest;
+import tr.springcloudrabbitcsv.file.CsvFileReader;
 import tr.springcloudrabbitcsv.publisher.QueuePublisher;
 
 @RestController
@@ -15,9 +16,12 @@ public class MessageBrokerController {
 
     private final QueuePublisher queuePublisher;
 
+    private final CsvFileReader csvFileReader;
 
-    public MessageBrokerController(QueuePublisher queuePublisher) {
+
+    public MessageBrokerController(QueuePublisher queuePublisher,CsvFileReader csvFileReader) {
         this.queuePublisher = queuePublisher;
+        this.csvFileReader = csvFileReader;
     }
 
     @PostMapping(path = "/publish/queue")
@@ -26,6 +30,7 @@ public class MessageBrokerController {
         queuePublisher.sendMessage(eligibilityRequest);
         //topicPublisher.publishEligibilityRequest(eligibilityRequest);
         logger.info("Controller published eligibility request to queue");
+        csvFileReader.readCsvFile();
         //topicPublisher.publishEligibilityRequestFucker(eligibilityRequest);
         //logger.info("Controller published eligibility request to queue fucker: {}", queueName);
     }
