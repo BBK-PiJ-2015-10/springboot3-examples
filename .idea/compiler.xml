@@ -10,10 +10,10 @@
         <module name="security" />
         <module name="examples" />
         <module name="spring-cloud-stream-aca-sink" />
+        <module name="spring-rabbit-csv" />
         <module name="spring-cloud-stream-aca-enrich" />
         <module name="spring-cloud-stream-aca-kafka" />
         <module name="spring-cloud-stream-aca-source" />
-        <module name="spring-cloud-rabbit-csv" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -25,12 +25,12 @@
       <module name="actors" options="-parameters" />
       <module name="examples" options="-parameters" />
       <module name="security" options="-parameters" />
-      <module name="spring-cloud-rabbit-csv" options="-parameters" />
       <module name="spring-cloud-stream-aca-enrich" options="-parameters" />
       <module name="spring-cloud-stream-aca-kafka" options="-parameters" />
       <module name="spring-cloud-stream-aca-sink" options="-parameters" />
       <module name="spring-cloud-stream-aca-source" options="-parameters" />
       <module name="spring-cloud-stream-rabbit" options="-parameters" />
+      <module name="spring-rabbit-csv" options="-parameters" />
     </option>
   </component>
 </project>

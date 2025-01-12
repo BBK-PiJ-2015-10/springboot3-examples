@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>tr</groupId>
-    <artifactId>spring-cloud-rabbit-csv</artifactId>
+    <artifactId>spring-rabbit-csv</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-cloud-rabbit-csv</name>
     <description>spring-cloud-rabbit-csv</description>
