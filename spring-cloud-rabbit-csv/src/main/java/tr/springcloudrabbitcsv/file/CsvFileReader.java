@@ -1,9 +1,11 @@
 package tr.springcloudrabbitcsv.file;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import tr.springcloudrabbitcsv.entity.EligibilityRequest;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -14,41 +16,34 @@ import java.util.List;
 @Component
 public class CsvFileReader {
 
-    Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+    private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
-    String fileName = "allpago/src/main/resources/input/03.csv";
+    private final String fileRelativePathName = "/csv/testing.csv";
 
-//    try (
-//    InputStreamReader streamReader =
-//            new InputStreamReader(is, StandardCharsets.UTF_8);
-//    BufferedReader reader = new BufferedReader(streamReader)) {
-//
-//        String line;
-//        while ((line = reader.readLine()) != null) {
-//            System.out.println(line);
-//        }
-//
-//    } catch (IOException e) {
-//        e.printStackTrace();
-//    }
+    private ObjectMapper objectMapper;
 
-    public void readCsvFile() {
-        logger.info("Reading file: {}", fileName);
-        InputStream inputStream = TypeReference.class.getResourceAsStream("/csv/testing.csv");
-        List<String> lines = new ArrayList<>();
-        try(InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-            BufferedReader reader = new BufferedReader(inputStreamReader)) {
-            // Read the file
+    public CsvFileReader(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+
+    public List<EligibilityRequest> readCsvFile() {
+        List<EligibilityRequest> requests = new ArrayList<>();
+        logger.info("Reading file: {}", fileRelativePathName);
+        InputStream inputStream = TypeReference.class.getResourceAsStream(fileRelativePathName);
+        try (InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+             BufferedReader reader = new BufferedReader(inputStreamReader)) {
             String line;
             while ((line = reader.readLine()) != null) {
-                lines.add(line.replace(",",""));
+                String jsonLine = line.replace(",", "");
+                EligibilityRequest request = objectMapper.readValue(jsonLine, EligibilityRequest.class);
+                requests.add(request);
             }
-            logger.info("File read successfully: {}", lines);
+            logger.info("File read successfully: {}", requests);
+            return requests;
         } catch (Exception e) {
             logger.error("Error reading file: {}", e.getMessage());
+            return requests;
         }
-
-
     }
 
 }

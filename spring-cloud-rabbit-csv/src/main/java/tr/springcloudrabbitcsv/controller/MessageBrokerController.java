@@ -19,7 +19,7 @@ public class MessageBrokerController {
     private final CsvFileReader csvFileReader;
 
 
-    public MessageBrokerController(QueuePublisher queuePublisher,CsvFileReader csvFileReader) {
+    public MessageBrokerController(QueuePublisher queuePublisher, CsvFileReader csvFileReader) {
         this.queuePublisher = queuePublisher;
         this.csvFileReader = csvFileReader;
     }
@@ -27,12 +27,9 @@ public class MessageBrokerController {
     @PostMapping(path = "/publish/queue")
     public void publishMessage(@RequestBody EligibilityRequest eligibilityRequest) {
         logger.info("Controller received eligibility request to published message {} to queue: {}", eligibilityRequest);
-        queuePublisher.sendMessage(eligibilityRequest);
-        //topicPublisher.publishEligibilityRequest(eligibilityRequest);
+        var requests = csvFileReader.readCsvFile();
+        requests.forEach(queuePublisher::sendMessage);
         logger.info("Controller published eligibility request to queue");
-        csvFileReader.readCsvFile();
-        //topicPublisher.publishEligibilityRequestFucker(eligibilityRequest);
-        //logger.info("Controller published eligibility request to queue fucker: {}", queueName);
     }
 
 
