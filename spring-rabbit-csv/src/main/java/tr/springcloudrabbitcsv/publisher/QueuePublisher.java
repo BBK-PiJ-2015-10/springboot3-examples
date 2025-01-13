@@ -1,17 +1,14 @@
 package tr.springcloudrabbitcsv.publisher;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import tr.springcloudrabbitcsv.entity.EligibilityRequest;
 
-import java.util.List;
-
 import static tr.springcloudrabbitcsv.config.RabbitMQConfig.EXCHANGE_NAME;
 import static tr.springcloudrabbitcsv.config.RabbitMQConfig.QUEUE_NAME;
-
 
 @Service
 public class QueuePublisher {
@@ -19,6 +16,8 @@ public class QueuePublisher {
     private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
     private RabbitTemplate rabbitTemplate;
+
+    private ObjectMapper objectMapper = new ObjectMapper();
 
     public QueuePublisher(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
@@ -41,10 +40,8 @@ public class QueuePublisher {
             return;
         }
         var response = rabbitTemplate.receiveAndConvert(queueName);
-        logger.info("WOOF {}",response.toString());
-        //List<EligibilityRequest> response = rabbitTemplate.receiveAndConvert(queueName, new ParameterizedTypeReference<List<EligibilityRequest>>() {
-        //});
-        logger.info("Consumed from queue {} messages : {}", queueName, response);
+        var eligibilityRequest = objectMapper.convertValue(response, EligibilityRequest.class);
+        logger.info("Consumed {}", eligibilityRequest);
     }
 
 }
