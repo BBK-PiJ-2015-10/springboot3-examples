@@ -1,7 +1,5 @@
 package tr.springcloudrabbitcsv.publisher;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -19,11 +17,8 @@ public class QueuePublisher {
 
     private RabbitTemplate rabbitTemplate;
 
-    private ObjectMapper objectMapper;
-
-    public QueuePublisher(RabbitTemplate rabbitTemplate, ObjectMapper objectMapper) {
+    public QueuePublisher(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
-        this.objectMapper = objectMapper;
     }
 
     public void sendMessage(String queueName, EligibilityRequest eligibilityRequest) {
@@ -32,13 +27,8 @@ public class QueuePublisher {
             logger.error("Invalid queue name: {}", queueName);
             return;
         }
-        try {
-            var jsonRequest = objectMapper.writeValueAsString(eligibilityRequest);
-            rabbitTemplate.convertAndSend(EXCHANGE_NAME, QUEUE_NAME, jsonRequest);
-            logger.info("Message {} sent to queue: {}", jsonRequest, queueName);
-        } catch (JsonProcessingException e) {
-            logger.error("Error converting object to json: {}", e.getMessage());
-        }
+        rabbitTemplate.convertAndSend(EXCHANGE_NAME, QUEUE_NAME, eligibilityRequest);
+        logger.info("Message {} sent to queue: {}", eligibilityRequest, queueName);
     }
 
 }
