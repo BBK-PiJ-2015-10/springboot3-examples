@@ -1,4 +1,4 @@
-package tr.springcloudrabbitcsv.publisher;
+package tr.springcloudrabbitcsv.adapter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -11,7 +11,7 @@ import static tr.springcloudrabbitcsv.config.RabbitMQConfig.EXCHANGE_NAME;
 import static tr.springcloudrabbitcsv.config.RabbitMQConfig.QUEUE_NAME;
 
 @Service
-public class QueuePublisher {
+public class QueueAdapter {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass().getName());
 
@@ -19,7 +19,7 @@ public class QueuePublisher {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    public QueuePublisher(RabbitTemplate rabbitTemplate) {
+    public QueueAdapter(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
 

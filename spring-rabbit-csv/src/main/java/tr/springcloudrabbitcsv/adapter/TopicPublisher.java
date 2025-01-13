@@ -1,4 +1,4 @@
-package tr.springcloudrabbitcsv.publisher;
+package tr.springcloudrabbitcsv.adapter;
 
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;
