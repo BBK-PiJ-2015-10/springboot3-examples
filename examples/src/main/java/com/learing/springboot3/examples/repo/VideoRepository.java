@@ -12,6 +12,9 @@ public interface VideoRepository extends JpaRepository<VideoEntity, Long> {
     // Exact match for name
     List<VideoEntity> findByName(String name);
 
+    // This will fetch all videos where name is null
+    List<VideoEntity> findByNameIsNull();
+
     // Contains provides partially matches and ignore case ignores case
     // OR is a simple OR
     List<VideoEntity> findByNameContainsOrDescriptionContainsAllIgnoreCase(

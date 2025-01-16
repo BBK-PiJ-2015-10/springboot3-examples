@@ -75,13 +75,16 @@ public class VideoServiceImpl implements VideoService {
     public List<VideoEntity> search(UniversalSearch search) {
         VideoEntity probe = new VideoEntity();
         // this will exactly match the non-null fields
+        // the null fields if set are ignored all together
         if (StringUtils.hasText(search.value())) {
             probe.setName(search.value());
             probe.setDescription(search.value());
         }
         //Example exampleExactlyMatchingNonNullFields = Example.of(probe);
         var matchingAllIgnoreAll = ExampleMatcher
+                // this will match any
                 //.matchingAll()
+                // matches any, ignores case, and uses partial matching
                 .matchingAny().withIgnoreCase().withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
         Example customMatcherExample = Example.of(probe, matchingAllIgnoreAll);
         return videoRepository.findAll(customMatcherExample);
