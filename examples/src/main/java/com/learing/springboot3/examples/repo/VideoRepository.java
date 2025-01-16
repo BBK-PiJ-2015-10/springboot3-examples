@@ -1,6 +1,7 @@
 package com.learing.springboot3.examples.repo;
 
 import com.learing.springboot3.examples.entity.VideoEntity;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -22,6 +23,12 @@ public interface VideoRepository extends JpaRepository<VideoEntity, Long> {
 
     // Exact match for description but ignores case
     List<VideoEntity> findByDescriptionIgnoreCase(String description);
+
+    // Contains provides partially matches and ignore case ignores case and sorts by name ascending
+    List<VideoEntity> findByDescriptionIgnoreCaseOrderByNameAsc(String description);
+
+    // Need to pass the Sort as a parameter
+    List<VideoEntity> findByDescriptionIgnoreCase(String description, Sort sort);
 
     // Native query means SQL query vs JPQL
     @Query(value = "select * from VIDEO_ENTITY where NAME = ?1",nativeQuery = true)

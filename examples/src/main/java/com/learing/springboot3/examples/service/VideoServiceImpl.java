@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -49,8 +50,7 @@ public class VideoServiceImpl implements VideoService {
         var nameProvided = StringUtils.hasText(search.name());
         var descriptionProvided = StringUtils.hasText(search.description());
         List<VideoEntity> result = List.of();
-        //Sort sort = Sort.by("name").ascending()
-        //      .and(Sort.by("description").descending());
+
         if (nameProvided && descriptionProvided) {
             return videoRepository.findByNameContainsOrDescriptionContainsAllIgnoreCase(search.name(), search.description());
         }
@@ -58,6 +58,14 @@ public class VideoServiceImpl implements VideoService {
             return videoRepository.findByNameContainsIgnoreCase(search.name());
         }
         if (descriptionProvided) {
+//            Examples of sorting
+//            Sort sort = Sort.by("name").ascending()
+//                    .and(Sort.by("description").descending());
+//            Sort.TypedSort<VideoEntity> typedSort = Sort.sort(VideoEntity.class);
+//            Sort sortTyped = typedSort.by(VideoEntity::getName).ascending()
+//                    .and(typedSort.by(VideoEntity::getDescription).descending());
+//            videoRepository.findByDescriptionIgnoreCase(search.name(), sort);
+//            videoRepository.findByDescriptionIgnoreCase(search.name(),sortTyped);
             return videoRepository.findByDescriptionIgnoreCase(search.description());
         }
         return result;
