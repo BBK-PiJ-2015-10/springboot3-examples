@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
 // TODO:
-// 1 - Change msg to json
 // https://thepracticaldeveloper.com/produce-and-consume-json-messages-with-spring-boot-amqp/
-// 2 - Read msg from queue and write to file
+// 1 - Consume all messages from queue
+// 2 - Save to local directory
 
 @SpringBootApplication
 public class SpringCloudRabbitCsvApplication {
